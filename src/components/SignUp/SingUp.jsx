@@ -5,7 +5,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 
 const SingUp = () => {
     const [error, setError] = useState('');
-  
+    const [show, setShow] = useState(false);
     const {createUser} = useContext(AuthContext);
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -40,7 +40,12 @@ const SingUp = () => {
                 </div>
                 <div className='form-container'>
                     <label htmlFor="">Password</label>
-                    <input className='password' type="password" name="password" required />
+                    <input className='password' type={show ? "text" : "password"} name="password" required />
+                    <p onClick={()=> setShow(!show)}><small>
+                        {
+                            show ? <span>Hide Password</span> : <span>Show Password</span>
+                        }
+                        </small></p>
                 </div>
                 <div>
                     <p>Already have an account <Link to="/login">LogIn</Link> </p>
